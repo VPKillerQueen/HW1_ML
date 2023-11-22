@@ -71,7 +71,7 @@ def get_vehicle_data():
     Load vehicle data and return it as a list: [train_x, train_y, test_x, test_y]
     """
     print('Reading vehicle data...')
-    train_x, train_y, test_x, test_y = load_list('data/vehicles.dat')
+    train_x, train_y, test_x, test_y = load_list("data/vehicles.dat")
     train_x = np.transpose(train_x, (2,0,1))
     test_x = np.transpose(test_x, (2,0,1))
     # print(x for x in train_x)

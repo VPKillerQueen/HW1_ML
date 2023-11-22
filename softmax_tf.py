@@ -61,9 +61,9 @@ if __name__ == "__main__":
     cost = -tf.reduce_sum(tf.reduce_sum(y*tf.math.log(pred),axis=1))/num_train
 
     # Define hyper-parameters and train-related parameters
-    num_epoch = 10000
-    # num_epoch = 3347
-    learning_rate = 0.01    
+    # num_epoch = 10000
+    num_epoch = 3347
+    learning_rate = 0.05    
 
     # [TODO 2.8] Create an SGD optimizer
     optimizer = tf.compat.v1.train.GradientDescentOptimizer(learning_rate = learning_rate).minimize(cost)
@@ -95,7 +95,7 @@ if __name__ == "__main__":
             # print(toc-tic)
             # [TODO 2.11] Define your own stopping condition here 
             best_val_loss = float("inf")
-            patience = 6  # Number of consecutive increases in validation loss before stopping
+            patience = 3  # Number of consecutive increases in validation loss before stopping
             consecutive_increases = 0
             if val_loss[-1] < best_val_loss:
                 best_val_loss = val_loss
@@ -109,4 +109,5 @@ if __name__ == "__main__":
                 break
         
         y_hat = sess.run(pred, feed_dict={x: test_x})
+        print(y_hat)
         test(y_hat, test_y)

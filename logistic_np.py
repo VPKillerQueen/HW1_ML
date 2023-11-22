@@ -16,8 +16,7 @@ class LogisticClassifier(object):
         :param w_shape: create w with shape w_shape using normal distribution
         """
 
-        mean = 0
-        std = 1
+
         self.w = np.random.normal(0, np.sqrt(2./np.sum(w_shape)), w_shape)
 
     def feed_forward(self, x):

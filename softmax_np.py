@@ -247,4 +247,5 @@ if __name__ == "__main__":
             break
 
     y_hat = dec_classifier.feed_forward(test_x)
+    # print(y_hat)
     test(y_hat, test_y)
