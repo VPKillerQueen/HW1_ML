@@ -65,10 +65,11 @@ class SoftmaxClassifier(LogisticClassifier):
         # [TODO 2.4]
         # Compute categorical loss
 
-        for i in range (y.shape[0]):
-            for j in range (y.shape[1]):
-                y[i,j] = np.float32(y[i,j]*np.log(y_hat[i,j]) )
-        # print(y)
+        # for i in range (y.shape[0]):
+        #     for j in range (y.shape[1]):
+        #         y[i,j] = np.float32(y[i,j]*np.log(y_hat[i,j]) )
+        # # print(y)
+        y=y*np.log(y_hat)
         return -1/(y.shape[0])*np.sum(np.sum(y,axis = 1))   
 
         
@@ -142,7 +143,7 @@ def create_one_hot(labels, num_k=10):
     return one_hot_labels
 
 
-def test(y_hat, test_y):
+def test1(y_hat, test_y):
     """test
     Compute the confusion matrix based on labels and predicted values 
 
@@ -218,7 +219,7 @@ if __name__ == "__main__":
         train_loss = dec_classifier.compute_loss(train_y, train_y_hat)
         val_loss = dec_classifier.compute_loss(val_y, val_y_hat)
 
-        grad = dec_classifier.get_grad(train_x, train_y, train_y_hat)
+        grad = dec_classifier.get_grad(train_x, train_y, train_y_hat) # E should be 2500,10 and train_x should be 2500,785, grad is 785
        
         # dec_classifier.numerical_check(train_x, train_y, grad)
         # Updating weight: choose either normal SGD or SGD with momentum
@@ -230,6 +231,7 @@ if __name__ == "__main__":
         # toc = time.clock()
         # print(toc-tic)
         # [TODO 2.6]
+        print(e)
         print(val_loss)
         # Propose your own stopping condition here
         best_val_loss = float("inf")
